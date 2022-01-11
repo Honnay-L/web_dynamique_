@@ -1,0 +1,22 @@
+/*!
+* Start Bootstrap - Landing Page v6.0.3 (https://startbootstrap.com/theme/landing-page)
+* Copyright 2013-2021 Start Bootstrap
+* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-landing-page/blob/master/LICENSE)
+*/
+// This file is intentionally blank
+// Use this file to add JavaScript to your project
+
+//formsearch
+$(function(){
+$("form#searchform").hide()
+$("a#read-form").on('click', function(event){
+    event.preventDefault();
+        $("form#searchform").toggle();
+    }
+);
+});
+
+//class formbug
+//$(function(){
+//$("form")
+//})

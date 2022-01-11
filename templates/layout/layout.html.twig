@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+            <meta name="description" content="" />
+            <meta name="author" content="" />
+
+            <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+            <!-- Bootstrap icons-->
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+            <!-- Google fonts-->
+            <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+            <link href="{{ asset('/css/styles.css ')}}" rel="stylesheet" />
+        {% endblock %}
+
+{% block body %}
+    <nav class="navbar navbar-light bg-light">
+        <div class="container">
+            <a class="logo navbar-brand" href="{{ url('home') }}"><span class="logo-top">L'Univers</span><br>Du Prénom</a>
+           <a class="btn btn-primary" href="{{ url('app_login') }}">connexion</a>
+            <a class="btn btn-primary" href="{{ url('search') }}">Recherchez un prénom</a>
+        </div>
+    </nav>
+{% block content %}
+{% endblock %}
+    <!-- Footer-->
+    <footer class="footer bg-light">
+        <div class="container">
+            <div class="row">
+                <p class="text-end">&copy; IPEPS SERAING SUP LUCAS HONNAY</p>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+    <script src="/js/scripts.js"></script>
+{% endblock %}

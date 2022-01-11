@@ -1,0 +1,33 @@
+{% extends 'layout/layout.html.twig' %}
+
+{% block content %}
+    <section class="call-to-action text-white text-center" id="signup">
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <h1 class="mb-5">Problème survenu sur le site</h1>
+                <div class="container">
+                    <div class="row">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th class="col-lg-2 border-white">Date</th>
+                                <th class="col-lg-2 border-white">nom</th>
+                                <th class="col-lg-8 last-border-white border-white">Description du problème</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for problem in problems %}
+                            <tr>
+                                <th class="border-white">{{ problem.date }}</th>
+                                <th class="border-white">zefzefze</th>
+                                <th class="last-border-white border-white">{{ problem.description }}</th>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

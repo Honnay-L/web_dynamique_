@@ -1,0 +1,36 @@
+{% extends 'layout/layout.html.twig' %}
+
+{% block content %}
+    <section class="call-to-action text-white text-center" id="signup">
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <h1>Les prénoms les plus appréciés par la communauté</h1>
+                <p class="space text-end"><a href="{{ url('content') }}">Affichez la liste des prénoms</a></p>
+                <p class="text-end"><a href="{{ url('addname') }}">Faire une demande d'ajout de prénom à la liste</a>
+                </p>
+                <div class="space row">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th class="col-lg-3 border-b">Prénom</th>
+                            <th class="col-lg-3">Origine</th>
+                            <th class="col-lg-5">Signification</th>
+                            <th class="col-lg-1 last-border">Like</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for firstname in firstnames %}
+                            <tr>
+                                <th class="border-bottom-black">{{ firstname.firstname }}</th>
+                                <th class="border-bottom-black">{{ firstname.origin }}</th>
+                                <th class="border-bottom-black">{{ firstname.description }}</th>
+                                <th class="last-border border-bottom-black"><i class="bi bi-hand-thumbs-up">25</i></th>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
