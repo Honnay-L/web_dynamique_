@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UsersiteRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\PrePersist;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -43,6 +45,16 @@ class Usersite implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\OneToOne(targetEntity=Photo::class, inversedBy="usersite", cascade={"persist", "remove"})
      */
     private $photo;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Likes::class, mappedBy="user")
+     */
+    private $likes;
+
+    public function __construct()
+    {
+        $this->likes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -161,8 +173,40 @@ class Usersite implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-
+    /**
+     * @return Collection|Likes[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
     }
+
+    public function addLike(Likes $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Likes $like): self
+    {
+        if ($this->likes->removeElement($like)) {
+            // set the owning side to null (unless already changed)
+            if ($like->getUser() === $this) {
+                $like->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+
+
+}
 
 
 

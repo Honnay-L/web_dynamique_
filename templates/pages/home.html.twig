@@ -4,33 +4,52 @@
     <section class="call-to-action text-white text-center" id="signup">
         <div class="container position-relative">
             <div class="row justify-content-center">
-                <h1>Les prénoms les plus appréciés par la communauté</h1>
+                <h1>Les derniers prénoms ajoutés</h1>
                 <p class="space text-end"><a href="{{ url('content') }}">Affichez la liste des prénoms</a></p>
-                <p class="text-end"><a href="{{ url('addname') }}">Faire une demande d'ajout de prénom à la liste</a>
                 </p>
                 <div class="space row">
                     <table>
                         <thead>
                         <tr>
-                            <th class="col-lg-3 border-b">Prénom</th>
-                            <th class="col-lg-3">Origine</th>
-                            <th class="col-lg-5">Signification</th>
-                            <th class="col-lg-1 last-border">Like</th>
+                            <th class="col-lg-3 border-white">Prénom</th>
+                            <th class="col-lg-3 border-white">Origine</th>
+                            <th class="col-lg-5 border-white">Signification</th>
+                            <th class="col-lg-1 border-white last-border">Like</th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for firstname in firstnames %}
                             <tr>
-                                <th class="border-bottom-black">{{ firstname.firstname }}</th>
-                                <th class="border-bottom-black">{{ firstname.origin }}</th>
-                                <th class="border-bottom-black">{{ firstname.description }}</th>
-                                <th class="last-border border-bottom-black"><i class="bi bi-hand-thumbs-up">25</i></th>
+                                <th class="border-white">{{ firstname.firstname }}</th>
+                                <th class="border-white">{{ firstname.origin }}</th>
+                                <th class="border-white">{{ firstname.description }}</th>
+                                <th class="last-border border-white">
+                                    {% if app.user %}
+                                        <a href="{{ path('firstname_like', {'id': firstname.id}) }}" class="js-like">
+                                            {% if app.user and firstname.isLikedByUser(app.user) %}
+                                                <i class="bi bi-hand-thumbs-up-fill"></i>
+                                            {% else %}
+                                                <i class="bi bi-hand-thumbs-up"></i>
+                                            {% endif %}
+                                            <span class="js-likes">{{ firstname.likes | length }}</span>
+                                        </a>
+                                    {% else %}
+                                        <i class="bi bi-hand-thumbs-up">{{ firstname.likes | length }}</i>
+                                        {% endif %}
+                                </th>
                             </tr>
                         {% endfor %}
                         </tbody>
                     </table>
                 </div>
+                <div class="space row separator-form">
+                    {% include 'pages/bug.html.twig' %}
+                </div>
             </div>
         </div>
     </section>
+{% endblock %}
+
+{% block javascript %}
+
 {% endblock %}

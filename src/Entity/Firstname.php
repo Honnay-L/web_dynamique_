@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Usersite;
 use App\Repository\FirstnameRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -41,10 +42,14 @@ class Firstname
      */
     private $origin;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Likes::class, mappedBy="firstname")
+     */
+    private $likes;
+
     public function __construct()
     {
         $this->likes = new ArrayCollection();
-        $this->Likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -99,4 +104,51 @@ class Firstname
 
         return $this;
     }
+
+    /**
+     * @return Collection|Likes[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Likes $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setFirstname($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Likes $like): self
+    {
+        if ($this->likes->removeElement($like)) {
+            // set the owning side to null (unless already changed)
+            if ($like->getFirstname() === $this) {
+                $like->setFirstname(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**"
+     * Permet de savoir nsi ce prénom est "liké" par un utilisateur.
+     *
+     * @param \App\Entity\Usersite $user
+     * @return bool
+     */
+    public function isLikedByUser(Usersite $usersite) : bool
+    {
+        foreach($this->likes as $like){
+            if($like->getUser() === $usersite){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

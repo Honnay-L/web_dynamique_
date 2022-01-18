@@ -19,12 +19,12 @@ class FirstnameRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Firstname::class);
     }
-
+    //function système de recherche
     public function findByFirstname(Search $search)
     {
         $qb = $this->createQueryBuilder('f')
             ->where('f.firstname LIKE :keyword')
-            ->setParameter('keyword', $search->getKeyword());
+            ->setParameter('keyword', '%'.$search->getKeyword().'%');
         if ($search->getOrigins()) {
             $qb ->andWhere('f.origin in (:origins)')
                 ->setParameter('origins', $search->getOrigins());

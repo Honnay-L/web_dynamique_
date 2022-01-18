@@ -11380,3 +11380,30 @@ footer.footer {
 .pagination{
   display: block;
 }
+.btn-menu{
+  position : absolute;
+  right: 280px;
+}
+ul{
+  padding-top: 25px;
+}
+li{
+  display: inline;
+}
+.img-format {
+  text-align: center;
+  width: 400px;
+  height: 400px;
+  margin: 20px 130px 40px 130px;
+  }
+.img-format img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.separator{
+ margin-bottom: 40px;
+}
+.separator-form{
+  margin-top: 200px;
+}

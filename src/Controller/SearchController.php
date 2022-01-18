@@ -23,7 +23,12 @@ class SearchController extends AbstractController
         $form->handleRequest($request);
         $result = [];
         if ($form->isSubmitted() && $form->isValid()) {
+            dump($search);
             $result = $firstnameRepository->findByFirstname($search);
+
+
+        }else{
+            dump($search);
         }
 
         return $this->render('pages/search.html.twig', ['searchForm' => $form->createView(),

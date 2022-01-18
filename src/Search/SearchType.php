@@ -14,6 +14,7 @@ use Symfony\Component\Validator\Constraints\Length;
 
 class SearchType extends AbstractType
 {
+    //form système de recherche
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder

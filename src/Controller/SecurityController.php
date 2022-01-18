@@ -27,9 +27,8 @@ class SecurityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword($passwordHasher->hashPassword($user, $user->getPlainPassword()));
             $user->setRoles(['ROLE_USER']);
-            // comment set photo_id à 1 par défault.
             //$image->setUrl('avatar.jpeg');
-            //  $user->setPhoto('avatar.jpeg');
+            //$user->setPhoto('avatar.jpeg');
             $em->persist($user);
           //  $em->persist($image);
             $em->flush();

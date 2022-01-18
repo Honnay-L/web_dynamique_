@@ -8,15 +8,36 @@
                     <div class="text-center text-white">
                         <h1 class="mb-5">Recherchez le prénom que vous souhaitez</h1>
                         {{ form(searchForm) }}
+                        <div class="separator"></div>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th class="col-lg-3 border-white">Prénom</th>
+                                <th class="col-lg-3 border-white">Origine</th>
+                                <th class="col-lg-6 border-white">Signification</th>
+                                <th class="col-lg-2 border-white last-border">Like</th>
+                            </tr>
+                            </thead>
+                            <tbody>
                             {% for firstname in firstnames %}
-
-                                {{ firstname.firstname }}
-                                {{ firstname.origin }}
-                                {{ firstname.description }}
-
-                            {% else %}
-                                <h1>Désolé,aucun résultats</h1>
-                        {% endfor %}
+                                <tr>
+                                    <th class="border-white">{{ firstname.firstname }}</th>
+                                    <th class="border-white">{{ firstname.origin }}</th>
+                                    <th class="border-white">{{ firstname.description }}</th>
+                                    <th class="last-border border-white">
+                                        <a href="{{ path('firstname_like', {'id': firstname.id}) }}" class="js-like">
+                                            {% if app.user and firstname.isLikedByUser(app.user) %}
+                                                <i class="bi bi-hand-thumbs-up-fill"></i>
+                                            {% else %}
+                                                <i class="bi bi-hand-thumbs-up"></i>
+                                            {% endif %}
+                                            <span class="js-likes">{{ firstname.likes | length }}</span>
+                                        </a>
+                                    </th>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

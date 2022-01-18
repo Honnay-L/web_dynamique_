@@ -29,7 +29,7 @@ class Search
     /**
      * @return array
      */
-    public function getOrigins(): string
+    public function getOrigins(): ?string
     {
         return $this->origins;
     }

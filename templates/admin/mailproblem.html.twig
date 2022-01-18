@@ -12,15 +12,17 @@
                             <tr>
                                 <th class="col-lg-2 border-white">Date</th>
                                 <th class="col-lg-2 border-white">nom</th>
-                                <th class="col-lg-8 last-border-white border-white">Description du problème</th>
+                                <th class="col-lg-6 last-border-white border-white">Description du problème</th>
+                                <th class="col-lg-2 last-border-white border-white">Problème réglé</th>
                             </tr>
                             </thead>
                             <tbody>
                             {% for problem in problems %}
                             <tr>
-                                <th class="border-white">{{ problem.date }}</th>
+                                <th class="border-white">{{ problem.date | date('d-m-Y') }}</th>
                                 <th class="border-white">zefzefze</th>
                                 <th class="last-border-white border-white">{{ problem.description }}</th>
+                                <th class="last-border-white border-white"><a href="{{ path('problem_delete', {'id': problem.id}) }}"><i class="bi bi-check-square-fill"></i></a></th>
                             </tr>
                             {% endfor %}
                             </tbody>
