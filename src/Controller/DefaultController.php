@@ -62,9 +62,6 @@ class DefaultController extends AbstractController
                 $user->setPhoto($photoUploader->uploadPhoto($form->get('photo')));
                 if ($user->getPhoto() != null) {
                     $em->persist($user->getPhoto());
-               // }else{
-               //     $user->setPhoto($user->getPhoto());
-                //    $em->persist($user->getPhoto());
                 }
                 $em->persist($user);
                 $em->flush();
