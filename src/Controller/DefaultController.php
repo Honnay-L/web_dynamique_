@@ -84,7 +84,7 @@ class DefaultController extends AbstractController
 
         $firstnames = $paginator->paginate(
             $datas,   //on donne les données
-            $request->query->getInt('page', 10),  // le numéro de la page en cours(1 par default)
+            $request->query->getInt('page', 1),  // le numéro de la page en cours(1 par default)
             10  // nombre d'élément par pages.
         );
         $problem = new Problem();

@@ -25,14 +25,18 @@
                                     <th class="border-white">{{ firstname.origin }}</th>
                                     <th class="border-white">{{ firstname.description }}</th>
                                     <th class="last-border border-white">
-                                        <a href="{{ path('firstname_like', {'id': firstname.id}) }}" class="js-like">
-                                            {% if app.user and firstname.isLikedByUser(app.user) %}
-                                                <i class="bi bi-hand-thumbs-up-fill"></i>
-                                            {% else %}
-                                                <i class="bi bi-hand-thumbs-up"></i>
-                                            {% endif %}
-                                            <span class="js-likes">{{ firstname.likes | length }}</span>
-                                        </a>
+                                        {% if app.user %}
+                                            <a href="{{ path('firstname_like', {'id': firstname.id}) }}" class="js-like">
+                                                {% if app.user and firstname.isLikedByUser(app.user) %}
+                                                    <i class="bi bi-hand-thumbs-up-fill"></i>
+                                                {% else %}
+                                                    <i class="bi bi-hand-thumbs-up"></i>
+                                                {% endif %}
+                                                <span class="js-likes">{{ firstname.likes | length }}</span>
+                                            </a>
+                                        {% else %}
+                                            <i class="bi bi-hand-thumbs-up">{{ firstname.likes | length }}</i>
+                                        {% endif %}
                                     </th>
                                 </tr>
                             {% endfor %}

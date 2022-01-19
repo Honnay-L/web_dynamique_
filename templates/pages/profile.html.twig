@@ -8,13 +8,13 @@
                     <h1 class="mb-5">Votre profil</h1>
                     <div class="img-format">
                         {% if app.user.photo %}
-                        <img src="{{ asset('/images/'~user.photo.url) }}" alt="">
+                        <img src="{{ asset('images/'~user.photo.url) }}" alt="">
                             <p>Modifiez l'image de profile</p>
                         {% else %}
-                        <img src="{{ asset('/images/avatar.jpeg') }}" alt="">
+                        <img src="{{ asset('images/avatar.jpeg') }}" alt="">
                             <p>Ajoutez une image de profil</p>
                         {% endif %}
-                    </div>
+                    </div>a
                     {{ form_start(userForm) }}
                     {{ form_end(userForm) }}
 
