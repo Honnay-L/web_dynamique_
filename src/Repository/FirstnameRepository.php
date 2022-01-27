@@ -19,16 +19,22 @@ class FirstnameRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Firstname::class);
     }
+
     //function système de recherche
     public function findByFirstname(Search $search)
     {
         $qb = $this->createQueryBuilder('f')
             ->where('f.firstname LIKE :keyword')
-            ->setParameter('keyword', '%'.$search->getKeyword().'%');
+            ->setParameter('keyword', '%' . $search->getKeyword() . '%');
+
         if ($search->getOrigins()) {
-            $qb ->andWhere('f.origin in (:origins)')
+            $qb->leftJoin('f.origin', 'o')
+                ->addSelect('o');
+            $qb->andWhere('o.name = :origins')
                 ->setParameter('origins', $search->getOrigins());
+
         }
+        $qb->orderBy('f.firstname', 'ASC');
         return $qb->getQuery()->getResult();
 
     }

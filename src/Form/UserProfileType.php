@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Usersite;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,8 +15,11 @@ class UserProfileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('photo', PhotoType::class,['label' => false])
-            ->add('email', )
+            ->add('photo', PhotoType::class,[
+                'label' => false,
+                'required' => false
+                ])
+            ->add('email', EmailType::class)
             ->add('submit', SubmitType::class)
 
         ;

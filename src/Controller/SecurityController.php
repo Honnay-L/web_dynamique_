@@ -20,17 +20,13 @@ class SecurityController extends AbstractController
      */
     public function inscription(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher): Response
     {
-       // $image = new Photo();
         $user = new Usersite();
         $form = $this->createForm(UserRegisterType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword($passwordHasher->hashPassword($user, $user->getPlainPassword()));
             $user->setRoles(['ROLE_USER']);
-            //$image->setUrl('avatar.jpeg');
-            //$user->setPhoto('avatar.jpeg');
             $em->persist($user);
-          //  $em->persist($image);
             $em->flush();
             return $this->redirectToRoute('app_login');
         }

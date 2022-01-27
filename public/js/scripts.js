@@ -15,10 +15,6 @@ $(document).ready(() => {
             }
 
             }
-          //  $('span.js-likes').text(res.likes);
-            //il faut affiché dans le span class js.likes la reponse.
-         //   $(e.currentTarget.href = res.data.likes);
-          //  $('span.js-likes' = res.data.likes);
         )
     })
 });

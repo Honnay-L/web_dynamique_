@@ -25,8 +25,6 @@ class SearchController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             dump($search);
             $result = $firstnameRepository->findByFirstname($search);
-
-
         }else{
             dump($search);
         }

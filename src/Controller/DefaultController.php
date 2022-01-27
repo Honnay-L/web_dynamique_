@@ -59,10 +59,11 @@ class DefaultController extends AbstractController
             $form = $this->createForm(UserProfileType::class, $user);
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
-                $user->setPhoto($photoUploader->uploadPhoto($form->get('photo')));
-                if ($user->getPhoto() != null) {
-                    $em->persist($user->getPhoto());
-                }
+                $photo = $photoUploader->uploadPhoto($form->get('photo'));
+               if ($photo !== null) {
+                   $user->setPhoto($photo);
+                   $em->persist($user->getPhoto());
+              }
                 $em->persist($user);
                 $em->flush();
                 return $this->redirectToRoute('profile', ['id' => $user->getId()]);

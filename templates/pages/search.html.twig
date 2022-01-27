@@ -10,6 +10,7 @@
                         {{ form(searchForm) }}
                         <div class="separator"></div>
                         <table>
+                            {% if firstnames !=null %}
                             <thead>
                             <tr>
                                 <th class="col-lg-3 border-white">Prénom</th>
@@ -18,6 +19,7 @@
                                 <th class="col-lg-2 border-white last-border">Like</th>
                             </tr>
                             </thead>
+                            {% endif %}
                             <tbody>
                             {% for firstname in firstnames %}
                                 <tr>
@@ -39,8 +41,12 @@
                                         {% endif %}
                                     </th>
                                 </tr>
-                            {% endfor %}
+                            {% else %}
+                                {% if searchForm.vars.submitted == true %}
+                                <p>Désolé, rien trouvé</p>
+                                {% endif %}
                             </tbody>
+                            {% endfor %}
                         </table>
                     </div>
                 </div>
